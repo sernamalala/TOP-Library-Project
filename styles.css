@@ -1,0 +1,11 @@
+#book-section{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    gap: 20px;
+}
+
+.card{
+    background-color: lightsalmon;
+    border: 1px solid black;
+    text-align: center;
+}
