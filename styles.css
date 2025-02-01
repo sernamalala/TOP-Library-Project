@@ -5,7 +5,36 @@
 }
 
 .card{
+    position: relative;
     background-color: lightsalmon;
     border: 1px solid black;
     text-align: center;
+    padding: 20px;
+}
+#new-book{
+    margin: 20px;
+    background-color: lightgreen;
+    padding: 20px;
+    font-size: 1.4em;
+    border: none;
+    border-radius: 20px;
+}
+#new-book:hover{
+    background-color: lightblue;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.close-btn {
+    position: absolute; 
+    top: 1px; 
+    right: 5px; 
+    background-color: transparent; 
+    border: none; 
+    font-size: 40px; 
+    cursor: pointer;
+    color: #333;
+}
+
+.close-btn:hover {
+    color: red; 
 }

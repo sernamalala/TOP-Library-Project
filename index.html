@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+    <button id="new-book">New Book</button>
+    <dialog title="New Book Form" id="form-dialog">
+        <h2>New Book Form</h2>
+        <form action="" id="new-book-form">
+            <fieldset id="title">
+                <label for="title">Title</label>
+                <input name="title" type="text" required>
+            </fieldset>
+            <fieldset id="author">
+                <label for="author">Author</label>
+                <input name="author" type="text" required>
+            </fieldset>
+            <fieldset id="pages">
+                <label for="pages">No. of Pages</label>
+                <input name="pages" type="number" required>
+            </fieldset>
+            <fieldset id="readStatus">
+                <label for="readStatus">Have you read the book?</label>
+                <select name="readStatus" id="" required>
+                    <option value="true">Yes</option>
+                    <option value="">No</option>
+                </select>
+               
+            </fieldset>
+            <button type="submit" id="submit-form">Submit</button>
+        </form>
+    </dialog>
     <div id="book-section">
 
     </div>
