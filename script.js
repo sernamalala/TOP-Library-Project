@@ -43,13 +43,13 @@ function displayBooks(array) {
         const pages = document.createElement("p");
         pages.innerHTML = `Number of pages: ${element.pages}`;
         const status= document.createElement("button");
+        status.className = "readingStatus";
         const closeButton = document.createElement("button");
         closeButton.innerHTML = "&times;";
         closeButton.className = "close-btn";
 
         if(element.fiction === true){
             status.innerHTML = `Read`;
-            status.id = "readingStatus";
             status.style.backgroundColor = "green";
         }
         else{
@@ -64,6 +64,66 @@ function displayBooks(array) {
         card.appendChild(closeButton);
         bookSection.appendChild(card);
     });
+
+    const closeButtons = document.querySelectorAll(".close-btn");
+closeButtons.forEach((button)=>{
+    button.addEventListener("click",function () 
+    {
+        const card = button.closest(".card");
+        
+        const bookIndex = myLibrary.findIndex( item => item.title === card.firstChild.innerHTML);
+        if(bookIndex!==-1){
+           
+                myLibrary.splice(bookIndex,1);
+            
+        }
+        
+        card.remove();
+    })
+
+})
+
+const readingStatusButtons = document.querySelectorAll(".readingStatus");
+readingStatusButtons.forEach((button)=>{
+
+    button.addEventListener("click", function () {
+        
+        console.log(button.innerHTML);
+        if( button.innerHTML == `Read`){
+        
+            button.innerHTML = `Not Read`;
+            button.style.backgroundColor = "red";
+
+            const card = button.closest(".card");
+            myLibrary.filter((item)=>{
+
+                if (item.title === card.firstChild.innerHTML){
+                
+                    item.fiction = false;
+                }
+            })
+        }
+
+        else{
+            button.innerHTML = `Read`;
+            button.style.backgroundColor = "green";
+
+            const card = button.closest(".card");
+            myLibrary.filter((item)=>{
+
+                if (item.title === card.firstChild.innerHTML){
+                
+                    item.fiction = true;
+                }
+            })
+            
+        }
+
+        
+    })
+    
+    
+})
     
 }
 displayBooks(myLibrary)
@@ -71,7 +131,15 @@ displayBooks(myLibrary)
 const newBookButton = document.getElementById("new-book");
 const formDialog = document.getElementById("form-dialog");
 newBookButton.addEventListener("click",function() {
+    console.log(myLibrary);
+
+    if(formDialog.open){
+        formDialog.close();
+    }
+    else{
     formDialog.show();
+    }
+    
 })
 
 const submitForm = document.getElementById("new-book-form");
@@ -89,63 +157,3 @@ submitForm.addEventListener("submit", function (event) {
     
 })
 
-const closeButtons = document.querySelectorAll(".close-btn");
-closeButtons.forEach((button)=>{
-    button.addEventListener("click",function () 
-    {
-        const card = button.closest(".card");
-        myLibrary.filter((item, index)=>{
-
-            if (item.title === card.firstChild.innerHTML){
-                myLibrary.splice(index,1);
-            }
-
-        })
-        console.log(card.firstChild.innerHTML)
-        console.log(myLibrary);
-        card.remove();
-    })
-
-})
-console.log(myLibrary);
-
-const readingStatusButtons = document.querySelectorAll("#readingStatus");
-readingStatusButtons.forEach((button)=>{
-
-    button.addEventListener("click", function () {
-        
-        if( button.innerHTML == `Read`){
-        
-            button.innerHTML = `Not Read`;
-            button.style.backgroundColor = "red";
-
-            const card = button.closest(".card");
-            myLibrary.filter((item)=>{
-
-                if (item.title === card.firstChild.innerHTML){
-                
-                    item.fiction = false;
-                }
-            })
-        }
-
-        else if(button.innerHTML == `Not Read`){
-            button.innerHTML = `Read`;
-            button.style.backgroundColor = "green";
-
-            const card = button.closest(".card");
-            myLibrary.filter((item)=>{
-
-                if (item.title === card.firstChild.innerHTML){
-                
-                    item.fiction = true;
-                }
-            })
-            
-        }
-
-        console.log(myLibrary);
-    })
-    
-
-})

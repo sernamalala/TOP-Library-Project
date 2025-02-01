@@ -4,6 +4,9 @@
     gap: 20px;
 }
 
+dialog{
+    position: static
+}
 .card{
     position: relative;
     background-color: lightsalmon;
